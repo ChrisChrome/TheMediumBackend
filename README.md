@@ -7,3 +7,5 @@ License](http://creativecommons.org/licenses/by-sa/4.0/).
 The code contained within this Repo is everything that has to do with the themedium.seaponycon.com Minecraft server
 
 ComputerCraft, ProjectRed, Forge, And Minecraft are not owned by myself or SEAPonyCon
+
+Note: I need to update all this stuff to be all nice and proper :3
