@@ -1,0 +1,54 @@
+--[[
+Output API, By SuPeRMiNoR2 (With help from immibis)
+LICENSE 
+http://creativecommons.org/licenses/by/3.0/deed.en_US
+This license only applies to THIS PROGRAM, not to minecraft, computercraft, or redpower
+You may edit, and/or use this program/API in your own programs/APIS. You do not have to leave this license comment in, but you can if you want :)  
+]]--
+
+--Version: 1.5
+
+local side = "back"
+
+function alloff()
+  rs.setBundledOutput(side, 0)
+end
+
+function set(color, state)
+ color = colors[color] or colours[color]
+ if not color then
+  error("Invalid colour", 2)
+ end
+ local func = (state and colors.combine or colors.subtract)
+ rs.setBundledOutput(side, func(rs.getBundledOutput(side), color))
+end
+
+function get(color)
+ color = colors[color] or colours[color]
+ return rs.testBundledInput(side, color)
+end
+
+function toggle(color)
+ cstate = get(color)
+ if cstate == false then
+ set(color, true)
+ end
+ if cstate == true then
+ set(color, false)
+ end
+end
+
+--[[
+function setadv(sided, color, state)
+ color = colors[color] or colours[color]
+ if not color then
+  error("Invalid colour", 2)
+ end
+ local func = (state and colors.combine or colors.subtract)
+ rs.setBundledOutput(sided, func(rs.getBundledOutput(sided), color))
+end
+--]]
+
+function setside(s)
+ side = s
+end
