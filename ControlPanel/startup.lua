@@ -1,4 +1,10 @@
 os.pullEvent = os.pullEventRaw
+os.loadAPI("json")
+temp = http.get("https://raw.githubusercontent.com/ChrisChrome/TheMediumBackend/master/2FA%20In%20Computercraft/backend/config.json")
+temp = temp.readAll()
+temp = json.decode(temp)
+serverURL    = temp.serverURL
+port         = temp.port
 --Get modem side
 local sides = { "top", "bottom", "left", "right", "front", "back" }
 for i = 1, #sides do
@@ -175,16 +181,22 @@ while true do
         x,y = term.getCursorPos()
         term.setCursorPos(x, y)
         input = read(string.char(7))
-        response = http.get("http://thearcanebrony.net:6969/check?id=serverRoom&code="..input)
-        res = response.readLine(1)
-        if res == "True" then
-            term.clear()
-            term.setCursorPos(1,1)
-            print("Developer Console")
-            error()
-        else
-            print("Password Incorrect")
-            sleep(1)
+        response = http.get("http://"..serverURL..":"..port.."/check?id=serverRoom&code="..input)
+        if response then
+            res = response.readLine(1)
+            if res == "True" then
+                term.clear()
+                term.setCursorPos(1,1)
+                print("Developer Console")
+                error()
+            else
+                print("Password Incorrect")
+                sleep(1)
+                os.reboot()
+            end
+        elseif response == nil then
+            print("Could not connect to auth server")
+            sleep(2)
             os.reboot()
         end
     else
