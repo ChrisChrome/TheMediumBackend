@@ -88,7 +88,7 @@ while true do
         --Light controls
         printHeaders()
         print("1 : Stage Floor Lights")
-        print("2 : Ceiling Lights")
+        print("2 : Hall Room Lights")
         promptNumber()
         light = read()
         if light == "1" then
