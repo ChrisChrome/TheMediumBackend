@@ -1,4 +1,4 @@
-The Medium Backend System
+    Quantum Backend
       ____________
      /\  ________ \
     /  \ \______/\ \

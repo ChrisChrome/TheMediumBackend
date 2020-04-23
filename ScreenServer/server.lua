@@ -1,6 +1,5 @@
 logMonitor = peripheral.wrap("monitor_1")
-term.clear()
-term.setCursorPos(1,1)
+
 term.setTextColor(colors.purple)
 print("SEAPonytCon Server Starting Up")
 term.setTextColor(colors.yellow)
@@ -15,7 +14,7 @@ term.setTextColor(colors.white)
 os.loadAPI("output")
 os.loadAPI("json")
 output.setside("front")
-d1 = peripheral.wrap("webdisplays_4")
+d1 = peripheral.wrap("webdisplays_10")
 d2 = peripheral.wrap("webdisplays_5")
 d3 = peripheral.wrap("webdisplays_6")
 d4 = peripheral.wrap("webdisplays_7")
@@ -126,6 +125,11 @@ while true do
     elseif action == "panic" then
         print("Action: panic")
         url("about:blank")
+        d1.setURL("about:blank")
+        d2.setURL("about:blank")
+        d3.setURL("about:blank")
+        d4.setURL("about:blank")
+        d5.setURL("about:blank")
         commands.tp("@a 698 21 -451")
         os.shutdown()
     end
