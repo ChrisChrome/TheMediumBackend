@@ -1,0 +1,16 @@
+mon = peripheral.wrap("monitor_2")
+mon.setTextScale(0.5)
+os.loadAPI("output")
+output.setside("front")
+output.set("red", false)
+term.clear()
+term.setCursorPos(1,1)
+print("Starting server OS on output monitor: monitor_1")
+while true do
+    output.set("red", false)
+    shell.run("monitor monitor_2 server.lua")
+    print("Terminated: Allowing time to kill")
+    output.set("red", true)
+    sleep(10)
+    print("Restarting server.lua")
+end
